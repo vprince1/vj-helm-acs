@@ -3,11 +3,11 @@ entries:
   zia-acs:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-22T12:05:22.522408-06:00"
+    created: "2020-03-22T12:56:08.48395-06:00"
     description: A Helm chart for Kubernetes
     digest: 652f34c40095f5867e9f0ddff554462055fb046f157bd6bd8feef2b26f0437d0
     name: zia-acs
     urls:
-    - https://api.bitbucket.org/2.0/repositories/ziadev/vj-helm-acs/src/master/zia-acs-release/zia-acs-0.1.0.tgz
+    - https://vprince1.github.io/vj-helm-acs/zia-acs-release/zia-acs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-03-22T12:05:22.511954-06:00"
+generated: "2020-03-22T12:56:08.475408-06:00"
