@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: acs-pv
+  labels:
+    type: local
+spec:
+  storageClassName: acsstorage
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+  hostPath:
+    path: "/Users/vijayprince/Work/projects/github/k8s-sandbox/pvc/volumes/acs"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: alfresco-volume-claim
+  labels:
+    app: acs
+spec:
+  storageClassName: acsstorage
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  #name: acs-vj-alfresco-search-solr-pv
+  #name: {{ template "alfresco-search.fullName" . }}-solr-pv
+  name: {{ .Release.Name }}-alfresco-search-solr-pv
+  labels:
+    #type: acs-vj-alfresco-search-solr
+    #type: {{ template "alfresco-search.fullName" . }}-solr
+    type: {{ .Release.Name }}-alfresco-search-solr
+spec:
+  #storageClassName: solrstorage
+  #storageClassName: {{ template "alfresco-search.fullName" . }}-solr-sc
+  storageClassName: {{ .Release.Name }}-alfresco-search-solr-sc
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+  hostPath:
+    path: "/Users/vijayprince/Work/projects/github/k8s-sandbox/pvc/volumes/solr"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  #name: acs-vj-alfresco-search-solr-claim
+  #name: {{ template "alfresco-search.fullName" . }}-solr-claim
+  name: {{ .Release.Name }}-alfresco-search-solr-claim
+  labels:
+    #app: acs-vj-alfresco-search-solr
+    #app: {{ template "alfresco-search.fullName" . }}-solr
+    app: {{ .Release.Name }}-alfresco-search-solr
+spec:
+  #storageClassName: solrstorage
+  #storageClassName: {{ template "alfresco-search.fullName" . }}-solr-sc
+  storageClassName: {{ .Release.Name }}-alfresco-search-solr-sc
+  accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 20Gi

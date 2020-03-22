@@ -1,0 +1,45 @@
+alfresco-content-services:
+  repository:
+    replicaCount: 1
+
+  transformrouter:
+    replicaCount: 1
+
+  pdfrenderer:
+    replicaCount: 1
+
+  imagemagick:
+    replicaCount: 1
+
+  libreoffice:
+    replicaCount: 1
+
+  tika:
+    replicaCount: 1
+
+  transformmisc:
+    replicaCount: 1
+
+  aiTransformer:
+    replicaCount: 1
+
+  filestore:
+    replicaCount: 1
+
+  share:
+    replicaCount: 1
+
+  postgresql:
+    replicaCount: 1
+
+  alfresco-infrastructure:
+    persistence:
+      enabled: false
+
+  alfresco-search:
+    persistence:
+      enabled: false
+
+  externalProtocol: http
+  externalHost: 127.0.0.1
+  externalPort: 80
