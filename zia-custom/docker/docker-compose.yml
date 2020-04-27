@@ -1,0 +1,59 @@
+version: '3.4'
+services:
+  zia-custom-share:
+    image: alfresco-share-zia-custom:development
+    build:
+      dockerfile: ./Dockerfile
+      context: ../../../zia-custom-share-docker/target
+    environment:
+      CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
+      REPO_HOST: zia-custom-acs
+      REPO_PORT: 8080
+    ports:
+      - "${share.port}:8080"
+      - "${share.debug.port}:8888"
+  zia-custom-acs:
+    image: alfresco-content-services-zia-custom:development
+    build:
+      dockerfile: ./Dockerfile
+      context: ../../../zia-custom-platform-docker/target
+    environment:
+      CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
+    ports:
+      - "${acs.port}:8080"
+      - "${acs.debug.port}:8888"
+    volumes:
+      - zia-custom-acs-volume:/usr/local/tomcat/alf_data
+    depends_on:
+      - zia-custom-postgres
+  zia-custom-postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: alfresco
+      POSTGRES_USER: alfresco
+      POSTGRES_PASSWORD: alfresco
+    command: postgres -c max_connections=300 -c log_min_messages=LOG
+    ports:
+      - "${postgres.port}:5432"
+    volumes:
+      - zia-custom-db-volume:/var/lib/postgresql/data
+  zia-custom-ass:
+    image: alfresco/alfresco-search-services:1.2.0
+    environment:
+      SOLR_ALFRESCO_HOST: zia-custom-acs
+      SOLR_ALFRESCO_PORT: 8080
+      SOLR_SOLR_HOST: zia-custom-ass
+      SOLR_SOLR_PORT: 8983
+      SOLR_CREATE_ALFRESCO_DEFAULTS: alfresco,archive
+    ports:
+      - "8983:8983"
+    volumes:
+      - zia-custom-ass-volume:/opt/alfresco-search-services/contentstore
+      - zia-custom-ass-volume:/opt/alfresco-search-services/data
+volumes:
+  zia-custom-acs-volume:
+    external: true
+  zia-custom-db-volume:
+    external: true
+  zia-custom-ass-volume:
+    external: true
