@@ -1,6 +1,11 @@
 alfresco-content-services:
   repository:
     replicaCount: 1
+    # This assumes you have a custom ACS Repo image in your local machine
+    image:
+      repository: alfresco-content-services-zia-custom
+      tag: development
+      pullPolicy: Never # Required - This image is only available locally
 
   transformrouter:
     replicaCount: 1
@@ -28,6 +33,11 @@ alfresco-content-services:
 
   share:
     replicaCount: 1
+    # This assumes you have a custom ACS Share image in your local machine
+    image:
+      repository: alfresco-share-zia-custom
+      tag: development
+      pullPolicy: Never # Required - This image is only available locally
 
   postgresql:
     replicaCount: 1
