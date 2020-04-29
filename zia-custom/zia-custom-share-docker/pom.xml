@@ -22,6 +22,13 @@
             <artifactId>zia-custom-share</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- Javascript Console Share AMP -->
+        <dependency>
+            <groupId>de.fmaul</groupId>
+            <artifactId>javascript-console-share</artifactId>
+            <version>0.6</version>
+            <type>amp</type>
+        </dependency>
     </dependencies>
 
     <build>
