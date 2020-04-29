@@ -3,20 +3,20 @@ entries:
   zia-acs:
   - apiVersion: v1
     appVersion: 6.2.0
-    created: "2020-04-29T14:48:36.496572-06:00"
-    description: A Helm chart for Kubernetes
-    digest: 33426e0c3b440dffc814e8f40dde07d34a45982aa6d128a3b25c0f560f1d716c
+    created: "2020-04-29T16:13:38.672271-06:00"
+    description: A Helm chart for Kubernetes with Alfresco SDK customizations
+    digest: e13ae8d29ed662a9606af9a482cf3111f059916751cacfd5cbd7c1d944ac9be1
     name: zia-acs
     urls:
     - https://ziaconsulting.github.io/demo-helm-acs/zia-acs-release/zia-acs-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-04-29T14:48:36.487561-06:00"
+    created: "2020-04-29T16:13:38.666324-06:00"
     description: A Helm chart for Kubernetes
     digest: 652f34c40095f5867e9f0ddff554462055fb046f157bd6bd8feef2b26f0437d0
     name: zia-acs
     urls:
     - https://ziaconsulting.github.io/demo-helm-acs/zia-acs-release/zia-acs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-04-29T14:48:36.471557-06:00"
+generated: "2020-04-29T16:13:38.658695-06:00"
