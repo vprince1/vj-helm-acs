@@ -1,0 +1,36 @@
+## PodPreset with example configmap values dependant on namespace and values
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alfresco-global-config
+data:
+  alfresco-global.properties: |-
+    vj.common=common property
+    {{- if eq .Release.Namespace "vj-development" }}
+    vj.ns.var1=dev ns vj-development
+    {{- end }}
+    {{- if eq .Release.Namespace "vj-production" }}
+    vj.ns.var1=prod ns vj-production
+    {{- end }}
+    {{- if eq .Values.env "dev" }}
+    vj.env.var2=dev values.env
+    {{- end }}
+    {{- if eq .Values.env "prod" }}
+    vj.env.var2=prod values.env
+    {{- end }}
+---
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+  name: alfresco-global
+spec:
+  selector:
+    matchLabels:
+      component: repository
+  volumeMounts:
+    - name: alf-global-vol
+      mountPath: /usr/local/tomcat/shared/classes
+  volumes:
+    - name: alf-global-vol
+      configMap:
+        name: alfresco-global-config

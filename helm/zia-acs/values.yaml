@@ -39,7 +39,15 @@ alfresco-content-services:
       tag: development
       pullPolicy: Never # Required - This image is only available locally
 
+  database:
+    external: true
+    driver: "org.mariadb.jdbc.Driver"
+    user: alfresco
+    password: alfresco
+    url: "'jdbc:mariadb://192.168.27.111:3306/alfresco?useUnicode=yes&characterEncoding=UTF-8'"
+
   postgresql:
+    enabled: false
     replicaCount: 1
 
   alfresco-infrastructure:
