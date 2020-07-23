@@ -12,10 +12,10 @@ data:
     {{- if eq .Release.Namespace "vj-production" }}
     vj.ns.var1=prod ns vj-production
     {{- end }}
-    {{- if eq .Values.env "dev" }}
+    {{- if and (.Values.env) (eq .Values.env "dev") }}
     vj.env.var2=dev values.env
     {{- end }}
-    {{- if eq .Values.env "prod" }}
+    {{- if and (.Values.env) (eq .Values.env "prod") }}
     vj.env.var2=prod values.env
     {{- end }}
 ---
